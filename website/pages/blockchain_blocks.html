@@ -1,28 +1,3 @@
-<style>
-    .blocksStatHolder > span{
-        display: inline-block;
-        border-radius: 5px;
-        padding: 1px 9px;
-        border: 1px solid #e5e5e5;
-        margin: 2px;
-    }
-    .blocksStatHolder > span > span{
-        font-weight: bold;
-    }
-    #blocks_rows > tr > td{
-        vertical-align: middle;
-        font-family: 'Inconsolata', monospace;
-        font-size: 0.95em;
-        text-align: center;
-    }
-    .luckGood{
-        color: darkgreen;
-    }
-    .luckBad{
-        color: darkred;
-    }
-</style>
-
 <div class="input-group">
     <input class="form-control" placeholder="Search for block number / block hash / hash transaction" id="txt_search">
     <span class="input-group-btn"><button class="btn btn-default" type="button" id="btn_search">
@@ -89,7 +64,38 @@
                 }
             });
         }
+    		// last block info
 
+    var block, xhrGetLastBlock;
+
+        function getSupply(coins, digits, withoutSymbol){
+            var amount = (parseInt(coins || 0) / lastStats.config.coinUnits).toFixed(digits || 0);
+            return amount + (withoutSymbol ? '' : (' ' + lastStats.config.symbol));
+        }
+    
+
+        function renderLastBlock(){
+        
+                xhrGetLastBlock = $.ajax({
+                url: api_blockexplorer + '/json_rpc',
+                method: "POST",
+                data: JSON.stringify({
+                    jsonrpc:"2.0",
+                    id: "test",
+                    method:"f_block_json",
+                    params: {
+                       hash: lastStats.network.hash
+                    }
+                }),
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    block = data.result.block;
+                    updateText('totalCoins', getSupply(block.alreadyGeneratedCoins));
+                }
+            });
+
+       }
         if ( text.length < 64 ) {
             GetSearchBlockbyHeight();
         }
@@ -105,19 +111,51 @@
         if(e.keyCode === 13)
             $('#btn_search').click();
     });
+    		// last block info
 
+    var block, xhrGetLastBlock;
+
+        function getSupply(coins, digits, withoutSymbol){
+            var amount = (parseInt(coins || 0) / lastStats.config.coinUnits).toFixed(digits || 0);
+            return amount + (withoutSymbol ? '' : (' ' + lastStats.config.symbol));
+        }
+    
+
+        function renderLastBlock(){
+        
+                xhrGetLastBlock = $.ajax({
+                url: api_blockexplorer + '/json_rpc',
+                method: "POST",
+                data: JSON.stringify({
+                    jsonrpc:"2.0",
+                    id: "test",
+                    method:"f_block_json",
+                    params: {
+                       hash: lastStats.network.hash
+                    }
+                }),
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    block = data.result.block;
+                    updateText('totalCoins', getSupply(block.alreadyGeneratedCoins));
+                }
+            });
+
+       }
 </script>
 
 <div class="blocksStatHolder">
     <span class="bg-primary">Total Blocks: <span id="networkLastReward"></span></span>
     <span class="bg-primary">Hash Rate: <span id="networkHashrate"></span></span>
     <span class="bg-primary">Difficulty: <span id="networkDifficulty"></span></span>
+    <span class="bg-primary">Total coins in the network: <span id="totalCoins"></span>
 </div>
 
 <hr>
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table table-hover table-striped">
         <thead>
         <tr>
             <th><i class="fa fa-bars"></i> Height</th>
@@ -148,7 +186,7 @@
         update: function(){
             updateText('networkLastReward', lastStats.network.height.toString());
             updateText('networkHashrate', getReadableHashRateString(lastStats.network.difficulty / lastStats.config.coinDifficultyTarget) + '/sec');
-            updateText('networkDifficulty', lastStats.network.difficulty.toString());
+            updateText('networkDifficulty', getReadableDifficultyString(lastStats.network.difficulty));
             renderInitialBlocks();
         }
     };
@@ -214,13 +252,13 @@
 
         switch (block.orphaned){
             case '0':
-                block.status = 'unlocked';
+                block.status = '';
                 break;
             case '1':
-                block.status = 'orphaned';
+                block.status = '';
                 break;
             default:
-                block.status = 'pending';
+                block.status = '';
                 break;
         }
 
@@ -242,8 +280,7 @@
         row.setAttribute('data-height', block.height);
         row.setAttribute('id', 'blockRow' + block.height);
         row.setAttribute('title', block.hash);
-        row.className = 'pending';
-//        row.className = blockStatusClasses[block.status];
+        row.className = blockStatusClasses[block.status];
         var columns =
             '<td>' + block.height + '</td>' +
             '<td>' + block.cumul_size + '</td>' +

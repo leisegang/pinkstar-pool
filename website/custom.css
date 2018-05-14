@@ -1,20 +1,22 @@
 @import url(//fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 @import url(//fonts.googleapis.com/css?family=Roboto:400,300,500);
 /* Insert your pool's unique css here */
+
 .marketRate {
-  display: none;
+/*  display: none;*/
 }
 a {
-  color: #03a678;
+  color: #cc5490;
 }
 a:hover {
-  color: #025b42;
+  color: #cc5490;
 }
 body {
   font-size: 14px;
   line-height: 1.428571429;
-  color: #6f6e6e;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: #ccc!important;
+  font-family: 'Helvetica Neue',Helvetica,'Roboto'Arial,sans-serif;
+  background: #333;
 }
 h1,
 h2,
@@ -38,7 +40,7 @@ h3,
   margin-bottom: 14px;
 }
 .navbar-inverse {
-  background-color: #2D5768;
+  background-color: #ff69b4!important;
   border-color: #f9f9f8;
   border-width: 0;
 }
@@ -68,23 +70,28 @@ h3,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #03a678;
+  background-color: #cc5490;
 }
 #stats_updated {
-  color: #F4FC3D;
+  color: #EBF8FC!important;
 }
 hr {
   border-top-color: #BBBBBB;
 }
+
+.round {
+    margin: 0 auto;
+}
+
 .stats > div:not(#addressError) {
-  color: #7C7C7C;
+  color: #ccc!important;
   padding: 10px 0px;
 }
 .stats > div:not(#addressError).marketFooter {
   padding: 5px 0;
 }
 .stats > div:not(#addressError) > i.fa {
-  color: #03a678;
+  color: #cc5490;
   font-size: 21px;
   width: 30px;
   text-align: center;
@@ -92,10 +99,10 @@ hr {
 .stats > div:not(#addressError) > span:not(.input-group-btn):first-of-type {
   font-weight: 500;
   padding: 0 2px;
-  color: #336A80;
+  color: #cc5490;
 }
 .form-control {
-  border: 1px solid #03a678;
+  border: 1px solid #cc5490;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -106,17 +113,17 @@ hr {
 .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #027454;
+  border-color: #cc5490;
 }
 .input-group-addon {
-  background-color: #03a678;
+  background-color: #cc5490;
   color: #fff;
-  border-color: #03a678;
+  border-color: #cc5490;
 }
 .btn-default {
   color: #ffffff;
-  background-color: #03a678;
-  border-color: #03a678;
+  background-color: #cc5490;
+  border-color: #cc5490;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -124,7 +131,7 @@ hr {
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #ffffff;
-  background-color: #027454;
+  background-color: #cc5490;
   border-color: #026a4d;
 }
 .btn-default:active,
@@ -147,21 +154,23 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: #03a678;
-  border-color: #03a678;
+  background-color: #cc5490;
+  border-color: #cc5490;
 }
 .btn-default .badge {
-  color: #03a678;
+  color: #cc5490;
   background-color: #ffffff;
 }
 .table th,
 .table .miningAppTitle {
   font-weight: 500;
+  font-size: 18px;
+  color: #ff69b4;
 }
 code {
-  padding: 2px 10px;
-  color: #DB2B24;
-  background-color: #FDECF1;
+  padding: 4px 10px;
+  color: #cc5490!important;
+  background-color: #EBF8FC!important;
   border-radius: 0;
 }
 .container .paymentsStatHolder,
@@ -177,11 +186,41 @@ code {
 .container .blocksStatHolder > span > span {
   font-weight: 500;
 }
+.blocksStatHolder > span,
+.paymentsStatHolder > span,
+.blocksStatHolder > span{
+    display: inline-block;
+    border-radius: 5px;
+    padding: 1px 9px;
+    border: 1px solid #e5e5e5;
+    margin: 2px;
+}
+.blocksStatHolder > span > span,
+.paymentsStatHolder > span > span,
+.blocksStatHolder > span > span{
+    font-weight: bold;
+}
+#blocks_rows > tr > td, 
+#payments_rows > tr > td,
+#blocks_rows > tr > td,
+#network_rows > tr > td{
+    vertical-align: middle;
+    font-family: 'Inconsolata', monospace;
+    padding-left: 12px!important;
+}
+
+.luckGood{
+    color: #0C3;
+}
+.luckBad{
+    color: #F03;
+}
+
 .bg-primary {
-  background-color: #03a678;
+  background-color: #00A8E8;
 }
 .bg-info {
-  background-color: #336A80;
+  background-color: #2c6595;
   color: #fff;
 }
 .table > thead > tr > td.success,
@@ -196,30 +235,48 @@ code {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #f4f9ff;
+  background-color: #b9e9f5;
 }
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td,
 .table-hover > tbody > tr:hover > .success,
 .table-hover > tbody > tr.success:hover > th {
-  background-color: #dbebff;
+  background-color: #f5f5f5!important;
 }
 .table > thead > tr > th {
-  color: #336A80;
-  border-bottom-color: #336A80;
+  color: #cc5490;
+  border-bottom-color: #cc5490;
 }
 .table > tbody > tr > td {
   border-top-color: #c9e0e9;
 }
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #444;
+}
+
+.fa-check {color:#0C3;}
+.fa-ban {color:#F03;}
+
 footer {
   background-color: #FDFDFD;
+display:none;
+}
+
+tr[title="pending"] {
+    background: #e5eff7!important;
+    color: #333;
+}
+
+tr[title="unlocked"], tr.success {
+    background: #b9e9f5!important;
 }
 /************************************************
 *** charts ***
 ************************************************/
 .chartsPoolStat {
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 .chartWrap {
@@ -267,7 +324,13 @@ footer {
 /************************************************
 *** 20% width block ***
 ************************************************/
-.col-sm-20, .col-sm-33 {
+.col-sm-20 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.col-sm-30 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -278,19 +341,21 @@ footer {
     float: left;
     width: 20%;
   }
-
-  .col-sm-33 {
+    .col-sm-30 {
     float: left;
     width: 33%;
   }
+}
+
+
 }
 /************************************************
 *** admin page ***
 ************************************************/
 .btn-primary {
   color: #ffffff;
-  background-color: #03a678;
-  border-color: #03a678;
+  background-color: #cc5490;
+  border-color: #cc5490;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -298,7 +363,7 @@ footer {
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #027454;
+  background-color: #cc5490;
   border-color: #026a4d;
 }
 .btn-primary:active,
@@ -321,11 +386,11 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #03a678;
-  border-color: #03a678;
+  background-color: #cc5490;
+  border-color: #cc5490;
 }
 .btn-primary .badge {
-  color: #03a678;
+  color: #cc5490;
   background-color: #ffffff;
 }
 a.list-group-item {
@@ -335,8 +400,8 @@ a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus {
   color: #ffffff;
-  background-color: #03a678;
-  border-color: #03a678;
+  background-color: #cc5490;
+  border-color: #cc5490;
 }
 a.list-group-item:first-child {
   border-top-right-radius: 0;
@@ -411,7 +476,7 @@ b {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #03a678;
+  background-color: #cc5490;
 }
 .adminMonitor code {
   white-space: normal;
@@ -420,3 +485,172 @@ b {
   margin-bottom: 10px;
 }
 
+.stats {
+    font-size: 18px;
+}
+
+#miningPoolHost{
+    font-size: 28px;
+}
+
+#miningPorts {
+    font-size: 20px;
+}
+
+#walletid {
+  word-wrap: break-word;
+}
+#red {
+    color: red;
+    font-size: 22px;
+}
+.ccc-widget{
+    max-width:400px;
+    margin: 0 auto;
+}
+#coinName{
+    display:none;
+}
+.menuIcon {
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    width: 32px;
+    height: 32px;
+}
+
+#coinName{
+    text-transform: capitalize;
+}
+body {
+    padding-top: 65px;
+    padding-bottom: 80px;
+    overflow-y: scroll;
+}
+.container{
+    font-size: 1.1em;
+}
+#loading{
+    font-size: 2em;
+}
+.stats {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.stats:last-child{
+    width: auto;
+}
+.stats > h3 > i{
+    font-size: 0.80em;
+    width: 21px;
+}
+.stats > div{
+    padding: 5px 0;
+}
+.stats > div > .fa {
+    width: 25px;
+}
+.stats > div > span:first-of-type{
+    font-weight: bold;
+}
+#stats_updated{
+    opacity: 0;
+    float: right;
+    margin-left: 30px;
+    color: #e8e8e8;
+    line-height: 47px;
+    font-size: 0.9em;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+footer > div{
+    margin: 10px auto;
+    text-align: center;
+}
+
+    .marketFooter{
+        font-size: 10px;
+        opacity: 0.6;
+    }
+    #networkLastReward{
+        text-transform: uppercase;
+    }
+    #lastHash{
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.8em;
+    }
+    #poolDonations{
+        font-size: 0.75em;
+    }
+    #miningProfitCalc{
+        margin: 35px 0;
+    }
+    #calcHashDropdown{
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    #calcHashHolder{
+        width: 590px;
+        max-width: 100%;
+    }
+    #calcHashRate{
+        z-index: inherit;
+        font-family: 'Inconsolata', monospace;
+    }
+    #calcHashAmount{
+        font-family: 'Inconsolata', monospace;
+    }
+    #calcHashResultsHolder{
+        min-width: 145px;
+        max-width: 145px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #yourStatsInput{
+        z-index: inherit;
+        font-family: 'Inconsolata', monospace;
+    }
+    #yourAddressDisplay > span {
+        font-family: 'Inconsolata', monospace;
+    }
+    #lookUp > span:nth-child(2){
+        display: none;
+    }
+    .yourStats{		
+	        display: none;		
+	    }
+    #yourAddressDisplay{
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.9em;
+    }
+    #addressError{
+        color: red;
+    }
+
+.top10 td {
+    padding: 3px!important;
+}
+
+@media (min-width: 2000px) {
+    .container {
+    width: 2000px !important;
+    }
+}
+
+@media screen and (min-device-width: 1500px) and (max-device-width: 1999px) { 
+    .container {
+    width: 1500px !important;
+    }
+}

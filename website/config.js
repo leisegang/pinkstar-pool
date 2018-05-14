@@ -1,26 +1,28 @@
-var api = "http://poolhost.com:8117";
+var api = "http://poolmining.us:7111";
 
-var api_blockexplorer = "http://daemonhost.com:39984";
+var api_blockexplorer = "http://poolmining.us:39984";
 
-var poolHost = "poolhost.com";
+var poolHost = "poolmining.us";
 
-var irc = "irc.freenode.net/#poolhost";
+var irc = "irc.freenode.net/#pinkstarcoin";
 
-var email = "support@poolhost.com";
+var email = "leisegang@gmail.com";
 
 var cryptonatorWidget = ["{symbol}-BTC", "{symbol}-USD", "{symbol}-EUR"];
 
-var easyminerDownload = "https://github.com/zone117x/cryptonote-easy-miner/releases/";
+var easyminerDownload = "http://poolmining.us/Pinkstarcoin-WindowsGUI.zip";
 
-var blockchainExplorer = "http://poolhost.com/?hash={id}#blockchain_block";
+var blockchainExplorer = "http://poolmining.us/?hash={id}#blockchain_block";
 
-var transactionExplorer = "http://poolhost.com/?hash={id}#blockchain_transaction";
+var transactionExplorer = "http://poolmining.us/?hash={id}#blockchain_transaction";
 
 var themeCss = "themes/default-theme.css";
 
 var networkStat = {
     "pstar": [
-        ["pstar.poolmining.us", "http://pstar.poolmining.us:7111"],
+        ["poolmining.us", "http://poolmining.us:7111"],
+        ["pinkpool.ga", "http://pinkpool.ga:8117"],
         ["npool.pw/pstar", "http://ca.npool.pw:8114"]
+        
     ]
 };
