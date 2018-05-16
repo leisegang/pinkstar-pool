@@ -1,3 +1,28 @@
+<style>
+    .blocksStatHolder > span{
+        display: inline-block;
+        border-radius: 5px;
+        padding: 1px 9px;
+        border: 1px solid #e5e5e5;
+        margin: 2px;
+    }
+    .blocksStatHolder > span > span{
+        font-weight: bold;
+    }
+    #blocks_rows > tr > td{
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+        text-align: center;
+    }
+    .luckGood{
+        color: darkgreen;
+    }
+    .luckBad{
+        color: darkred;
+    }
+</style>
+
 <div class="blocksStatHolder">
     <span class="bg-primary">Total Blocks Mined: <span id="blocksTotal"></span></span>
     <span class="bg-info">Maturity Depth Requirement: <span id="blocksMaturityCount"></span></span>
@@ -6,7 +31,7 @@
 <hr>
 
 <div class="table-responsive">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th><i class="fa fa-bars"></i> Height</th>
@@ -74,29 +99,19 @@
         };
 
         var toGo = lastStats.config.depth - (lastStats.network.height - block.height);
-        if(toGo > 1){
-            block.maturity = (lastStats.config.depth - toGo) + ' / ' + lastStats.config.depth;
-        } else if(toGo == 1){
-            block.maturity = '<i class="fa fa-unlock" aria-hidden="true"></i>';
-        } else if(toGo <= 0){
-            block.maturity = '<i class="fa fa-check" aria-hidden="true"></i>';
-        }
+        block.maturity = toGo < 1 ? '' : (toGo + ' to go');
 
         switch (block.orphaned){
             case '0':
                 block.status = 'unlocked';
-				block.maturity = '<i class="fa fa-check" aria-hidden="true"></i>'
                 break;
             case '1':
                 block.status = 'orphaned';
-				block.maturity = '<i class="fa fa-ban" aria-hidden="true"></i>';
                 break;
             default:
                 block.status = 'pending';
-			//	block.maturity = '<i class="fa fa-unlock" aria-hidden="true"></i>'
                 break;
         }
-
 
         return block;
     }
@@ -123,11 +138,11 @@
                     var accurateShares = shares;
                 }
                 if (difficulty > accurateShares){
-                    var percent = Math.round(accurateShares / difficulty * 100);
+                    var percent = 100 - Math.round(accurateShares / difficulty * 100);
                     return '<span class="luckGood">' + percent + '%</span>';
                 }
                 else{
-                    var percent = Math.round(accurateShares / difficulty * 100);
+                    var percent = (100 - Math.round(difficulty / accurateShares * 100)) * -1;
                     return '<span class="luckBad">' + percent + '%</span>';
                 }
 	    }
@@ -137,7 +152,7 @@
         }
 
         var blockStatusClasses = {
-            'pending': 'light',
+            'pending': '',
             'unlocked': 'success',
             'orphaned': 'danger'
         };
@@ -151,7 +166,7 @@
 
         var columns =
             '<td>' + block.height + '</td>' +
-            '<td class="maturity">' + block.maturity + '</td>' +
+            '<td>' + block.maturity + '</td>' +
             '<td>' + block.difficulty + '</td>' +
             '<td>' + formatBlockLink(block.hash) + '</td>' +
             '<td>' + formatDate(block.time) + '</td>' +

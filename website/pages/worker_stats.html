@@ -41,16 +41,11 @@ function fetchAddressWorkers(address) {
               title: 'Hashrate worker: ' + graphData[0].name,
               autosize: false,
               width: 1000,
-              height: 600,
+              height: 500,
               yaxis: {
-                autorange: true,
+                autorange: false,
+                range: [0, rangeMax + 500],
                 type: 'linear'
-              },
-              xaxis: {
-                showticklabels: true,
-                tickangle: 17,
-                ticklen: 6,
-                tickwidth: 2,
               }
             }
             $template.appendTo("#graphs");
@@ -94,7 +89,7 @@ function getWorkerGraphData(worker, address, dataHandler) {
         mode: 'lines',
         fill: 'tonexty',
         connectgaps: true,
-        autosize: true
+        autosize: false
       }], rangeMax);
     }
   });

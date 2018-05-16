@@ -1,3 +1,22 @@
+<style>
+    .paymentsStatHolder > span{
+        display: inline-block;
+        border-radius: 5px;
+        padding: 1px 9px;
+        border: 1px solid #e5e5e5;
+        margin: 2px;
+    }
+    .paymentsStatHolder > span > span{
+        font-weight: bold;
+    }
+    #payments_rows > tr > td{
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+        text-align: center;
+    }
+</style>
+
 <div class="paymentsStatHolder">
     <span class="bg-primary">Total Payments: <span id="paymentsTotal"></span></span>
     <span class="bg-info">Total Miners Paid: <span id="paymentsTotalPaid"></span></span>
@@ -5,9 +24,6 @@
     <span class="bg-info">Denomination Unit: <span id="paymentsDenomination"></span></span>
 </div>
 
-    
-            <div class="col-md-4" style="display:inline; float:right;">
-</div>
 <hr>
 
 <div class="table-responsive">
@@ -48,8 +64,8 @@
         update: function(){
             updateText('paymentsTotal', lastStats.pool.totalPayments.toString());
             updateText('paymentsTotalPaid', lastStats.pool.totalMinersPaid.toString());
-            updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold, 2));
-            updateText('paymentsDenomination', getReadableCoins(lastStats.config.denominationUnit, 2));
+            updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold, 3));
+            updateText('paymentsDenomination', getReadableCoins(lastStats.config.denominationUnit, 3));
             renderPayments(lastStats.pool.payments);
         }
     };

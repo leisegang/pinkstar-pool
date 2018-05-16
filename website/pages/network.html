@@ -1,11 +1,20 @@
+<style>
+    #network_rows > tr > td{
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+    }
+</style>
+
 <div class="table-responsive">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th><span id="network-symbol"></span> Pools</th>
                 <th><i class="fa fa-bars"></i> Height</th>
                 <th><i class="fa fa-tachometer"></i> Hashrate</th>
                 <th><i class="fa fa-group"></i> Miners</th>
+                <th><i class="fa fa-group"></i> Workers</th>
                 <th><i class="fa fa-money"></i> Total Fee</th>
                 <th><i class="fa fa-clock-o"></i> Last Block Found</th>
             </tr>
@@ -28,8 +37,9 @@
             NETWORK_STAT_MAP.forEach((url, host, map) => {
                 $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
                     updateText('height-'+host, data.network.height);
-                    updateText('hashrate-'+host, getReadableHashRateString(data.pool.hashrate)+'/s');
+                    updateText('hashrate-'+host, data.pool.hashrate+' H/s');
                     updateText('miners-'+host, data.pool.miners);
+                    updateText('workers-'+host, (data.pool.workers || 0));
                     updateText('totalFee-'+host, calculateTotalFee(data)+'%');
                     updateText('lastBlockFound-'+host, new Date(parseInt(data.pool.lastBlockFound)).toLocaleString());
                 });
@@ -43,8 +53,9 @@
             $('#network_rows').append('<tr>' +
                 '<td id=host-'+host+'><a target=blank href=http://'+host+'>'+host+'</a> ('+data.config.symbol+')</td>' +
                 '<td id=height-'+host+'>'+data.network.height+'</td>' +
-                '<td id=hashrate-'+host+'>'+getReadableHashRateString(data.pool.hashrate)+'/s</td>' +
+                '<td id=hashrate-'+host+'>'+data.pool.hashrate+'&nbsp;H/s</td>' +
                 '<td id=miners-'+host+'>'+data.pool.miners+'</td>' +
+                '<td id=workers-'+host+'>'+(data.pool.workers || 0)+'</td>' +
                 '<td id=totalFee-'+host+'>'+calculateTotalFee(data)+'%</td>' +
                 '<td id=lastBlockFound-'+host+'>'+new Date(parseInt(data.pool.lastBlockFound)).toLocaleString()+'</td>' +
             '</tr>');
