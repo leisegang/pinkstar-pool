@@ -10,7 +10,7 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th><span id="network-symbol"></span> Pools</th>
+                <th> Pools</th>
                 <th><i class="fa fa-bars"></i> Height</th>
                 <th><i class="fa fa-unlock-alt"></i> Difficulty</th>
                 <th><i class="fa fa-tachometer"></i> Hashrate</th>
@@ -64,7 +64,7 @@
                 '<td id=miners-'+host+'>'+data.pool.miners+'</td>' +
                 '<td id=workers-'+host+'>'+(data.pool.workers || 0)+'</td>' +
                 '<td id=totalFee-'+host+'>'+calculateTotalFee(data)+'%</td>' +
-                '<td id=totalBlocks-'+this[0]+'>'+data.pool.totalBlocks+'</td>' +
+                '<td id=totalBlocks-'+host+'>'+data.pool.totalBlocks+'</td>' +
                 '<td id=lastBlockFound-'+host+'>'+new Date(parseInt(data.pool.lastBlockFound)).toLocaleString()+'</td>' +
                 
             '</tr>');
