@@ -80,6 +80,8 @@
 
 
 <div id="siteInfo">
+	<h3>Announcement</h3>
+	<li>Could the owner of wallet id ending with WRAsVPEm and K23M6zUo1s please contact me!</li>
     <!-- Description or information about this pool -->
 </div>
 
@@ -88,8 +90,7 @@
     <div class="col-md-4 stats">
         <h3>Our Pool</h3>
         <div><i class="fa fa-tachometer"></i> Hash Rate: <span id="poolHashrate"></span></div>
-        <div><i class="fa fa-users"></i> Connected Miners: <span id="poolMiners"></span></div>
-        <div><i class="fa fa-users"></i> Connected Workers: <span id="poolWorkers"></span></div>
+        <div><i class="fa fa-users"></i>  Miners | Workers: <span id="poolMiners"></span> | <span id="poolWorkers"></span></div>
         <div><i class="fa fa-clock-o"></i> Block Found: <span id="poolLastBlockFound"></span></div>
         <div id="donations"><i class="fa fa-gift"></i> Donations: <span id="poolDonations"></span></div>
         <div><i class="fa fa-history"></i> Average Block Time: <span id="blockSolvedTime"></span></div>
@@ -129,12 +130,6 @@
             <tbody id="top10_rows"></tbody>
         </table>
         </div>
-    </div>
-
-    <div class="col-md-4 stats marketRate">
-        <h3 id="marketHeader">Market</h3>
-        <div class="marketFooter">Updated: <span id="marketLastUpdated"></span></div>
-        <div class="marketFooter">Powered by <a href="https://www.cryptonator.com/">Cryptonator</a></div>
     </div>
 </div>
 
@@ -274,7 +269,7 @@
         <div class="col-sm-4 stats">
             <div id="addressError"></div>
             <!-- <div class="yourStats"><i class="fa fa-key"></i> Address: <span id="yourAddressDisplay"></span></div> -->
-            <div class="yourStats"><i class="fa fa-dollar"></i> Minimum Payout: <span id="paymentsMinimum"></span></div>
+            <div class="yourStats"><i class="fa fa-dollar"></i> Minimum Payout: <span id="paymentsMinimum"></span> <a href="#settings" class="white">change</a></div>
             <div class="yourStats"><i class="fa fa-bank"></i> Pending Balance: <span id="yourPendingBalance"></span></div>
             <div class="yourStats"><i class="fa fa-money"></i> Total Paid: <span id="yourPaid"></span></div>
             <div class="yourStats"><i class="fa fa-clock-o"></i> Last Share Submitted: <span id="yourLastShare"></span></div>
@@ -386,7 +381,27 @@
 
             updateText('poolFee', /*floatToString(totalFee)*/ totalFee + '%');
 
-            updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold));
+            var address = $('#yourStatsInput').val().trim();
+            if (address != '') {
+                $.ajax({
+                    url: api + '/get_miner_payout_level',
+                    data: {
+                        address: address
+                    },
+                    dataType: 'json',
+                    cache: 'false'
+                }).done(function(data){
+                    if (data.level == undefined) {
+                        updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold));
+                    }
+                    else {
+                        updateText('paymentsMinimum', getReadableCoins(data.level * lastStats.config.coinUnits));
+                    }
+                });
+            }
+            else {
+                updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold));
+            }
 
             updateText('blockSolvedTime', getReadableTime(lastStats.network.difficulty / lastStats.pool.hashrate));
             updateText('calcHashSymbol', lastStats.config.symbol);
