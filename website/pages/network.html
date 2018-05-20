@@ -15,9 +15,9 @@
                 <th><i class="fa fa-unlock-alt"></i> Difficulty</th>
                 <th><i class="fa fa-tachometer"></i> Hashrate</th>
                 <th><i class="fa fa-group"></i> Miners</th>
-                <th><i class="fa fa-gavel"></i> Workers</th>
+                <!--<th><i class="fa fa-gavel"></i> Workers</th>-->
                 <th><i class="fa fa-money"></i> Total Fee</th>
-                <th><i class="fa fa-th-large"></i> Total Blocks Found</th>
+                <th><i class="fa fa-th-large"></i> Blocks Found</th>
                 <th><i class="fa fa-clock-o"></i> Last Block Found</th>
             </tr>
         </thead>
@@ -40,9 +40,9 @@
                 $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
                     updateText('height-'+host, data.network.height);
                     updateText('difficulty-'+host, getReadableDiffString(data.network.difficulty));
-                    updateText('hashrate-'+host, getReadableDiffString(data.pool.hashrate+' H/s'));
+                    updateText('hashrate-'+host, getReadableHashRateString(data.pool.hashrate+' H/s'));
                     updateText('miners-'+host, data.pool.miners);
-                    updateText('workers-'+host, (data.pool.workers || 0));
+                    //updateText('workers-'+host, (data.pool.workers || 0));
                     updateText('totalFee-'+host, calculateTotalFee(data)+'%');
                     updateText('totalBlocks-'+host, data.pool.totalBlocks); 
                     updateText('lastBlockFound-'+host, new Date(parseInt(data.pool.lastBlockFound)).toLocaleString());
@@ -60,9 +60,9 @@
                 '<td id=host-'+host+'><a target=blank href=http://'+host+'>'+host+'</a> ('+data.config.symbol+')</td>' +
                 '<td id=height-'+host+'>'+data.network.height+'</td>' +
                 '<td id=difficulty-'+host+'>'+getReadableDiffString(data.network.difficulty)+'</td>' +
-                '<td id=hashrate-'+host+'>'+getReadableDiffString(data.pool.hashrate)+'&nbsp;H/s</td>' +
+                '<td id=hashrate-'+host+'>'+getReadableHashRateString(data.pool.hashrate)+'H/s</td>' +
                 '<td id=miners-'+host+'>'+data.pool.miners+'</td>' +
-                '<td id=workers-'+host+'>'+(data.pool.workers || 0)+'</td>' +
+                //'<td id=workers-'+host+'>'+(data.pool.workers || 0)+'</td>' +
                 '<td id=totalFee-'+host+'>'+calculateTotalFee(data)+'%</td>' +
                 '<td id=totalBlocks-'+host+'>'+data.pool.totalBlocks+'</td>' +
                 '<td id=lastBlockFound-'+host+'>'+new Date(parseInt(data.pool.lastBlockFound)).toLocaleString()+'</td>' +
@@ -84,7 +84,7 @@
 
     function getReadableHashRateString(hashrate){
         var i = 0;
-        var byteUnits = [' H', ' KH', ' MH', ' GH', ' TH', ' PH' ];
+        var byteUnits = [' ', ' K', ' M', ' G', ' T', ' P' ];
         while (hashrate > 1000){
             hashrate = hashrate / 1000;
             i++;
@@ -94,12 +94,12 @@
     
     function getReadableDiffString(diff){
         var i = 0;
-        var byteUnits = ['', ' K', ' M', ' G', ' T', ' P' ];
+        var byteUnits = [' ', ' K', ' M', ' G', ' T', ' P' ];
         while (diff > 1000){
             diff = diff / 1000;
             i++;
         }
-        return diff.toFixed(2) + byteUnits[i];
+        return diff.toFixed(4) + byteUnits[i];
     }
 
 
