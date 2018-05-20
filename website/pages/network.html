@@ -12,6 +12,7 @@
             <tr>
                 <th><span id="network-symbol"></span> Pools</th>
                 <th><i class="fa fa-bars"></i> Height</th>
+                <th><i class="fa fa-unlock-alt"></i> Difficulty</th>
                 <th><i class="fa fa-tachometer"></i> Hashrate</th>
                 <th><i class="fa fa-group"></i> Miners</th>
                 <th><i class="fa fa-gavel"></i> Workers</th>
@@ -38,6 +39,7 @@
             NETWORK_STAT_MAP.forEach((url, host, map) => {
                 $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
                     updateText('height-'+host, data.network.height);
+                    updateText('difficulty-'+host, getReadableDiffString(data.network.difficulty));
                     updateText('hashrate-'+host, data.pool.hashrate+' H/s');
                     updateText('miners-'+host, data.pool.miners);
                     updateText('workers-'+host, (data.pool.workers || 0));
@@ -57,6 +59,7 @@
             $('#network_rows').append('<tr>' +
                 '<td id=host-'+host+'><a target=blank href=http://'+host+'>'+host+'</a> ('+data.config.symbol+')</td>' +
                 '<td id=height-'+host+'>'+data.network.height+'</td>' +
+                '<td id=difficulty-'+host+'>'+getReadableDiffString(data.network.difficulty)+'</td>' +
                 '<td id=hashrate-'+host+'>'+data.pool.hashrate+'&nbsp;H/s</td>' +
                 '<td id=miners-'+host+'>'+data.pool.miners+'</td>' +
                 '<td id=workers-'+host+'>'+(data.pool.workers || 0)+'</td>' +
@@ -77,5 +80,27 @@
         }
         return totalFee;
     }
+
+
+    function getReadableHashRateString(hashrate){
+        var i = 0;
+        var byteUnits = [' H', ' KH', ' MH', ' GH', ' TH', ' PH' ];
+        while (hashrate > 1000){
+            hashrate = hashrate / 1000;
+            i++;
+        }
+        return hashrate.toFixed(2) + byteUnits[i];
+    }
+    
+    function getReadableDiffString(diff){
+        var i = 0;
+        var byteUnits = ['', ' K', ' M', ' G', ' T', ' P' ];
+        while (diff > 1000){
+            diff = diff / 1000;
+            i++;
+        }
+        return diff.toFixed(2) + byteUnits[i];
+    }
+
 
 </script>
