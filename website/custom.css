@@ -6,11 +6,21 @@
 /*  display: none;*/
 }
 a {
-  color: #cc5490;
+  color: #cc5490!important;
 }
+
 a:hover {
   color: #cc5490;
 }
+
+a.white {
+  color: #ccc!important; 
+}
+
+a.admin {
+  color: #fff!important;
+}
+
 body {
   font-size: 14px;
   line-height: 1.428571429;
@@ -44,11 +54,11 @@ h3,
   border-color: #f9f9f8;
   border-width: 0;
 }
-.navbar-inverse .container {
+.navbar-inverse .	 {
   background-color: rgba(0, 0, 0, 0);
 }
 .navbar-inverse .navbar-brand {
-  color: #fff;
+  color: #fff!important;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -59,7 +69,7 @@ h3,
   color: #CEE3E4;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #F0F9FA;
+  color: #F0F9FA!important;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -70,7 +80,7 @@ h3,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #cc5490;
+  background-color: #cc5490!important;
 }
 #stats_updated {
   color: #EBF8FC!important;
@@ -91,7 +101,7 @@ hr {
   padding: 5px 0;
 }
 .stats > div:not(#addressError) > i.fa {
-  color: #cc5490;
+  color: #cc5490!important;
   font-size: 21px;
   width: 30px;
   text-align: center;
@@ -99,7 +109,7 @@ hr {
 .stats > div:not(#addressError) > span:not(.input-group-btn):first-of-type {
   font-weight: 500;
   padding: 0 2px;
-  color: #cc5490;
+  color: #cc5490!important;
 }
 .form-control {
   border: 1px solid #cc5490;
@@ -116,15 +126,15 @@ hr {
   border-color: #cc5490;
 }
 .input-group-addon {
-  background-color: #cc5490;
-  color: #fff;
-  border-color: #cc5490;
+  background-color: #cc5490!important;
+  border-color: #cc5490!important;
 }
 .btn-default {
-  color: #ffffff;
-  background-color: #cc5490;
-  border-color: #cc5490;
+  color: #fff!important;
+  background-color: #cc5490!important;
+  border-color: #cc5490!important;
 }
+
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
@@ -178,9 +188,10 @@ code {
   padding-top: 20px;
 }
 .container .paymentsStatHolder > span,
-.container .blocksStatHolder > span {
-  border-width: 0;
-  padding: 6px 13px;
+.container .blocksStatHolder > span,
+.blocksStatHolder > div > span {
+  border: none!important;
+  padding: 6px 13px!important;
 }
 .container .paymentsStatHolder > span > span,
 .container .blocksStatHolder > span > span {
@@ -210,17 +221,17 @@ code {
 }
 
 .luckGood{
-    color: #0C3;
+    color: #0C3!important;
 }
 .luckBad{
-    color: #F03;
+    color: #F03!important;
 }
 
 .bg-primary {
-  background-color: #00A8E8;
+  background-color: #cc5490!important;
 }
 .bg-info {
-  background-color: #2c6595;
+  background-color: #cc5490!important;
   color: #fff;
 }
 .table > thead > tr > td.success,
@@ -235,7 +246,7 @@ code {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #b9e9f5;
+  background-color: #444!important;
 }
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
@@ -245,8 +256,8 @@ code {
   background-color: #f5f5f5!important;
 }
 .table > thead > tr > th {
-  color: #cc5490;
-  border-bottom-color: #cc5490;
+  color: #cc5490!important;
+  border-bottom-color: #cc5490!important;
 }
 .table > tbody > tr > td {
   border-top-color: #c9e0e9;
@@ -265,8 +276,7 @@ display:none;
 }
 
 tr[title="pending"] {
-    background: #e5eff7!important;
-    color: #333;
+    color: #ccc;
 }
 
 tr[title="unlocked"], tr.success {
@@ -341,7 +351,7 @@ tr[title="unlocked"], tr.success {
     float: left;
     width: 20%;
   }
-    .col-sm-30 {
+    .col-sm-33 {
     float: left;
     width: 33%;
   }
@@ -399,7 +409,7 @@ a.list-group-item {
 a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus {
-  color: #ffffff;
+  color: #fff!important;
   background-color: #cc5490;
   border-color: #cc5490;
 }
@@ -528,7 +538,10 @@ body {
 }
 .container{
     font-size: 1.1em;
+    padding-left: 5px;
+    padding-right: 0px;
 }
+
 #loading{
     font-size: 2em;
 }
@@ -552,14 +565,6 @@ body {
 .stats > div > span:first-of-type{
     font-weight: bold;
 }
-#stats_updated{
-    opacity: 0;
-    float: right;
-    margin-left: 30px;
-    color: #e8e8e8;
-    line-height: 47px;
-    font-size: 0.9em;
-}
 
 footer{
     position: fixed;
@@ -573,71 +578,78 @@ footer > div{
     text-align: center;
 }
 
-    .marketFooter{
-        font-size: 10px;
-        opacity: 0.6;
-    }
-    #networkLastReward{
-        text-transform: uppercase;
-    }
-    #lastHash{
-        font-family: 'Inconsolata', monospace;
-        font-size: 0.8em;
-    }
-    #poolDonations{
-        font-size: 0.75em;
-    }
-    #miningProfitCalc{
-        margin: 35px 0;
-    }
-    #calcHashDropdown{
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
-    }
-    #calcHashHolder{
-        width: 590px;
-        max-width: 100%;
-    }
-    #calcHashRate{
-        z-index: inherit;
-        font-family: 'Inconsolata', monospace;
-    }
-    #calcHashAmount{
-        font-family: 'Inconsolata', monospace;
-    }
-    #calcHashResultsHolder{
-        min-width: 145px;
-        max-width: 145px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    #yourStatsInput{
-        z-index: inherit;
-        font-family: 'Inconsolata', monospace;
-    }
-    #yourAddressDisplay > span {
-        font-family: 'Inconsolata', monospace;
-    }
-    #lookUp > span:nth-child(2){
-        display: none;
-    }
-    .yourStats{		
-	        display: none;		
-	    }
-    #yourAddressDisplay{
-        display: inline-block;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        vertical-align: middle;
-        font-family: 'Inconsolata', monospace;
-        font-size: 0.9em;
-    }
-    #addressError{
-        color: red;
-    }
+span.mempool > a{
+	color: #fff!important;
+}
+#poolWorkers{
+	color: #cc5490!important;
+	font-weight: 500;
+}
+.marketFooter{
+	font-size: 10px;
+	opacity: 0.6;
+}
+#networkLastReward{
+	text-transform: uppercase;
+}
+#lastHash{
+	font-family: 'Inconsolata', monospace;
+	font-size: 0.8em;
+}
+#poolDonations{
+	font-size: 0.75em;
+}
+#miningProfitCalc{
+	margin: 35px 0;
+}
+#calcHashDropdown{
+	border-radius: 0;
+	border-left: 0;
+	border-right: 0;
+}
+#calcHashHolder{
+	width: 590px;
+	max-width: 100%;
+}
+#calcHashRate{
+	z-index: inherit;
+	font-family: 'Inconsolata', monospace;
+}
+#calcHashAmount{
+	font-family: 'Inconsolata', monospace;
+}
+#calcHashResultsHolder{
+	min-width: 145px;
+	max-width: 145px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#yourStatsInput{
+	z-index: inherit;
+	font-family: 'Inconsolata', monospace;
+}
+#yourAddressDisplay > span {
+	font-family: 'Inconsolata', monospace;
+}
+#lookUp > span:nth-child(2){
+	display: none;
+}
+.yourStats{		
+		display: none;		
+	}
+#yourAddressDisplay{
+	display: inline-block;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	font-family: 'Inconsolata', monospace;
+	font-size: 0.9em;
+}
+#addressError{
+	color: red;
+}
 
 .top10 td {
     padding: 3px!important;
@@ -647,6 +659,15 @@ footer > div{
     .container {
     width: 2000px !important;
     }
+    .pool{
+	width:33%!important
+	}
+	.network{
+	width:38%!important
+	}
+	.toplist{
+	width:27%!important
+	}
 }
 
 @media screen and (min-device-width: 1500px) and (max-device-width: 1999px) { 
@@ -654,3 +675,8 @@ footer > div{
     width: 1500px !important;
     }
 }
+
+.hotlink {
+color: #fff!important;
+}
+
