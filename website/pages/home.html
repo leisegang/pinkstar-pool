@@ -78,12 +78,11 @@
 
 </style>
 
-
+<!--
 <div id="siteInfo">
 	<h3>Announcement</h3>
-	<li>Could the owner of wallet id ending with WRAsVPEm, you have outstanding balance please contact me!</li>
-    <!-- Description or information about this pool -->
 </div>
+-->
 
 <div class="row">
 
@@ -94,6 +93,7 @@
         <div><i class="fa fa-clock-o"></i> Block Found: <span id="poolLastBlockFound"></span></div>
         <div id="donations"><i class="fa fa-gift"></i> Donations: <span id="poolDonations"></span></div>
         <div><i class="fa fa-history"></i> Average Block Time: <span id="blockSolvedTime"></span></div>
+        <div><i class="fa fa-th-large"></i> Total Blocks Mined: <span id="blocksTotal"></span></div>
         <div><i class="fa fa-money"></i> Pool Fee: <span id="poolFee"></span></div>
         <div><i class="fa fa-clock-o"></i> Round Time: <span id="elapsedroundtime" target="_blank"></span></div>
         <div><i class="fa fa-users"></i> Round hashes: <span id="poolRoundHashes"></span></div>
@@ -115,7 +115,9 @@
         <div><i class="fa fa-money"></i> Last Reward: <span id="networkLastReward"></span></div>
         <div><i class="fa fa-paw"></i> Last Hash: <a id="lastHash" target="_blank"></a></div>
         <div><i class="fa fa-money"></i> Coins mined: <span id="totalCoins"></span></div>
+        <div><i class="fa fa-percent" aria-hidden="true"></i> Emission: <span id="emissionPercent"></span> %</div>
         <div><i class="fa fa-bars"></i>Total transactions: <span id="totalTransactions"></span></div>
+        
     </div>
 
     <div class="col-md-4 toplist">
@@ -335,6 +337,8 @@
             }
             if (xhrGetPayments) xhrGetPayments.abort();
             if (xhrGetTOP) xhrGetTOP.abort();
+            if (xhrGetTotalCoins) xhrGetTotalCoins.abort();
+           
         },
         init: function(){
         },
@@ -347,7 +351,7 @@
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.network.difficulty));
             updateTitleText('networkDifficulty', lastStats.network.difficulty);
             updateText('blockchainHeight', lastStats.network.height.toString());
-            updateText('networkLastReward', getReadableCoins(lastStats.network.reward, 4));
+            updateText('networkLastReward', getReadableCoins(lastStats.network.reward, 2));
             updateText('lastHash', lastStats.network.hash.substr(0, 13) + '...').setAttribute('href', getBlockchainUrl(lastStats.network.hash));
 
             updateText('currentEffort', (lastStats.pool.roundHashes / lastStats.network.difficulty * 100).toFixed(1) + '%');
@@ -408,6 +412,7 @@
             updateText('blockSolvedTime', getReadableTime(lastStats.network.difficulty / lastStats.pool.hashrate));
             updateText('calcHashSymbol', lastStats.config.symbol);
             updateTotalCoins();
+            updateText('blocksTotal', lastStats.pool.totalBlocks.toString());
 
             calcEstimateProfit();
 
@@ -547,7 +552,7 @@
             var hashRate = parseFloat($('#calcHashRate').val()) * rateUnit;
             var profit = (hashRate * 86400 / lastStats.network.difficulty) * lastStats.network.reward;
             if (profit) {
-                updateText('calcHashAmount', getReadableCoins(profit, 4, true));
+                updateText('calcHashAmount', getReadableCoins(profit, 2, true));
                 return;
             }
         }
@@ -564,7 +569,7 @@
     function getPaymentCells(payment){
         return '<td>' + formatDate(payment.time) + '</td>' +
                 '<td>' + formatPaymentLink(payment.hash) + '</td>' +
-                '<td>' + getReadableCoins(payment.amount, 4, true) + '</td>' +
+                '<td>' + getReadableCoins(payment.amount, 2, true) + '</td>' +
                 '<td>' + payment.mixin + '</td>';
     }
 
@@ -719,7 +724,7 @@
         if(rawData) {
             for (var i = 0, xy; xy = rawData[i]; i++) {
                 graphData.names.push(new Date(xy[0]*1000).toUTCString());
-                graphData.values.push(fixValueToCoins ? getReadableCoins(xy[1], 4, true) : xy[1]);
+                graphData.values.push(fixValueToCoins ? getReadableCoins(xy[1], 2, true) : xy[1]);
             }
         }        
        
@@ -789,6 +794,8 @@
        }
     }
 
+
+
     var xhrGetTotalCoins;
     function updateTotalCoins(){
         if (xhrGetTotalCoins) xhrGetTotalCoins.abort();
@@ -808,9 +815,11 @@
             success: function(data){
                 updateText('totalCoins', getReadableCoins(data.result.block.alreadyGeneratedCoins));
                 updateText('totalTransactions', data.result.block.alreadyGeneratedTransactions);
+                updateText('emissionPercent', (data.result.block.alreadyGeneratedCoins / 12000000000 * 100).toFixed(2));
             }
         });
     }
+
 
     
     var xhrRenderCharts;
@@ -822,7 +831,4 @@
             success: createCharts
         });               
     });
-
-
-
 </script>

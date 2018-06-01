@@ -57,6 +57,9 @@ h3,
 .navbar-inverse .	 {
   background-color: rgba(0, 0, 0, 0);
 }
+.navbar-brand {
+    padding: 18px 0 0 15px;
+}
 .navbar-inverse .navbar-brand {
   color: #fff!important;
 }
@@ -70,18 +73,36 @@ h3,
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #F0F9FA!important;
+  margin-top: 3px;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color: transparent;
+    color: #ffffff;
+    background-color: #cc5490!important;
+    border-top: 3px solid #000;
+    margin-top: 0px;
 }
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #ffffff;
   background-color: #cc5490!important;
+  border-top: 3px solid black;
+  margin-top: 0px;
 }
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    color: #fff!important;
+    background-color: #cc5490;
+}
+
+.dropdown-menu>li>a {
+    padding: 10px 15px;
+}
+
+
+
 #stats_updated {
   color: #EBF8FC!important;
 }
@@ -538,13 +559,23 @@ body {
 }
 .container{
     font-size: 1.1em;
-    padding-left: 5px;
-    padding-right: 0px;
+    padding-left: 0px;!important;
+    padding-right: 0px;!important;
 }
 
 #loading{
     font-size: 2em;
 }
+
+#stats_updated{	
+    opacity: 0;	
+    float: right;	
+    margin-left: 30px;	
+    color: #e8e8e8;	
+    line-height: 47px;	
+    font-size: 0.9em;	
+}
+
 .stats {
     margin-bottom: 10px;
     margin-top: 5px;
@@ -652,8 +683,21 @@ span.mempool > a{
 }
 
 .top10 td {
-    padding: 3px!important;
+    padding: 3px 0 3px 10px!important;
 }
+
+.faq {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin: 0 0 15px 0;
+    padding: 10px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.87);
+    background: #fff;
+}
+
 
 @media (min-width: 2000px) {
     .container {
@@ -680,3 +724,22 @@ span.mempool > a{
 color: #fff!important;
 }
 
+@media (min-width: 1200px)
+.container {
+    width: 1220px!important;
+}
+}
+@media (min-width: 992px)
+.container {
+    width: 970px;
+}
+}
+@media (min-width: 768px){
+    .container {
+        width: 750px;
+    }
+    .navbar-nav>li>a {
+        padding-top: 12px;
+        padding-bottom: 15px;
+    }
+}

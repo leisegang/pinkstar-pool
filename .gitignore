@@ -3,3 +3,6 @@ node_modules/
 config.json
 logs/
 npm-debug.log
+website/pages/top10miners.html
+website/pages/market.html
+website/pages/faq.html

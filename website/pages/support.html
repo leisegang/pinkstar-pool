@@ -15,107 +15,210 @@
 
 <div class="col-sm-6">
 <h3>FAQ</h3>
-    <ul>
-        <li><span class="faqtitle">Where are my stats?</span>
+
+        <div class="faq">
+        <h4 class="faqtitle">Where are my stats?</h4>
         <p>They were lost during the FORK of the PNKS to PSTAR, payment was done before reset. Stats are lost but we continue to mine here at poolmining.us</p>
-        </li>
+        </div>
         
-        <li><span class="faqtitle">Can i use Worker at this pool?</span>
-        <p>YES, you can  use wallet_id+workername at this pool. Use walletID+workerID if you want fixed diff use: walletID+workerID.fixeddiff -> VqKbKuRE+PC.50000 to set worker name to PC and fixed diff to 50000.</p>
-        </li>
-        
-        <li><span class="faqtitle">Can i use fixed difficulty at this pool?</span>
+        <div class="faq">
+        <h4 class="faqtitle">Can i use Worker at this pool?</h4>
+        <p>YES, you can  use wallet_id+workername at this pool. Use walletID+workerID.</p>
+        </div>
+<!--        
+        <div class="faq">
+        <h4 class="faqtitle">Can i use fixed difficulty at this pool?</h4>
         <p>For fixed diff use wallet.diff -> wallet_id.100000 
         You can calculate optimal difficulty as: WORKER HASHRATE x 60 SECONDS. So if average hashrate of your miner connection is 100 H/S, than optimal fixed difficulty will be 6000.</p>
-        </li>
-        
-        <li><span class="faqtitle">Is the hasrate on dashboard accurate?</span>
+        </div>
+-->        
+        <div class="faq">
+        <h4 class="faqtitle">Is the hasrate on dashboard accurate?</h4>
         <p>Yes and no! The Hashrate in your miner is the actual hashrate. The dashboard shows effective hashrate. If you solve a 10000 share after 5000 you get higher effective hashrate. If you solve it at 13000 its lower than what your miner shows.</p>
-        </li>
+        </div>
         
-        <li><span class="faqtitle">Where is the pool/server located?</span>
+        <div class="faq">
+        <h4 class="faqtitle">Where is the pool/server located?</h4>
         <p>Server is in France. Domain is (.us) but its located in france.</p>
-        </li>
+        </div>
         
-        <li><span class="faqtitle">Can i mine directy to Cryptopia / exchange?</span>
+        <div class="faq">
+        <h4 class="faqtitle">Can i mine directy to Cryptopia / exchange?</h4>
         <p>NO! You can not mine directly to exchange wallet, your coins will be lost!</p>
-        </li>
+        </div>
        
-        <li><span class="faqtitle">What are orphaned blocks?</span>
+        <div class="faq">
+        <h4 class="faqtitle">What are orphaned blocks?</h4>
         <p>Detached or Orphaned blocks are valid blocks which are not part of the main chain. They can occur naturally when two miners produce blocks at similar times. Read more here: <a href="https://bitcoin.stackexchange.com/questions/5859/what-are-orphaned-and-stale-blocks">StackExchange</a>.</p>
-        </li>
-<!--         
-        <li><span class="faqtitle"></span>
-        <p></p>
-        </li>
+        </div>
         
-        <li><span class="faqtitle"></span>
-        <p></p>
-        </li>
+        <div class="faq">
+        <h4 class="faqtitle">What is difficulty?</h4>
+        <p>Difficulty is a measure of how difficult it is to find a hash below a given target.</p>
+        </div>
         
-        <li><span class="faqtitle"></span>
+        <div class="faq">
+        <h4 class="faqtitle">What is luck?</h4>
+        <p>Mining is probabilistic in nature: if you find a block earlier than you statistically should on average you are lucky if it takes longer, you are unlucky. In a perfect World pool would find a block on 100% luck value. Less then 100% means the pool was lucky. More then 100% means the pool was unlucky.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">What is share?</h4>
+        <p>Share is a possible valid hash for the block. Shares are beings sent by your rigs to the pool to prove their work.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">What is block?</h4>
+        <p>Transaction data is recorded in blocks. New transactions are being processes by miners into new blocks which are added to the end of the blockchain.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">How long does it take to find a block?</h4>
+        <p>It depends on amount of active miners. The more miners work on pool → the more hashrate pool has → the more blocks are found by the pool. However the more miners are active → the less reward you get from each block found.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">Which payouts scheme is used?</h4>
+        <p>Proportional (Share-based): Every time a block is found, its reward is split between miners according to the number of shares they submitted.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">How current payout estimate is calculated?</h4>
+        <p>The estimated payout is a calculated using your percentage of valid shares on the total for current round. This percentage is then applied to the reward of the last block found by the network.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">I have been mining on this pool for 1 hour but still have not received any payouts. WTF?</h4>
+        <p>As soon as the block is found, it takes 20 blocks to confirm it, then you will get your reward. This takes about 2 hours (20 blocks of 4 minutes). Please wait a little bit more time. To make it easier to understand block on the "Pool blocks" page need to become green. After that pool is automatically calculating shares and increasing pending balance of all miners taking part in mining.</p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle">My hashrate is wrong! Why?</h4>
+        <p>Since you start to mine your hashrate grows gradually. Please wait. The pool determines your hashrate based on the amount of shares sent by your mining rigs (workers). This value could be a little bit different from reported hasrate (in your mining software).</p>
+        </div>
+         
+        <div class="faq">
+        <h4 class="faqtitle">I got banned from my mining pool. Why?</h4>
+        <p>If you submit lots of invalid shares, your IP will be banned by the pool for a fixed period. Possible reasons for invalid shares can be your hardware getting overworked, you haven't configure properly the variant on your miners, or your difficulty being set too low.</p>
+        </div>
+<!--        
+        <div class="faq">
+        <h4 class="faqtitle"></h4>
         <p></p>
-        </li>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle"></h4>
+        <p></p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle"></h4>
+        <p></p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle"></h4>
+        <p></p>
+        </div>
+        
+        <div class="faq">
+        <h4 class="faqtitle"></h4>
+        <p></p>
+        </div>
+        
 -->
-    </ul>
+
     
     
 <h3>Pool Changelog</h3>
-    <ul>
-    	<li><span class="date">13.05.2018</span> - Fixed the hashrate chart under Your Stats & Payment History
-        </li>
-    	<li><span class="date">13.05.2018</span> - Fixed the hashrate chart under Your Stats & Payment History
-        </li>
-        <li><span class="date">05.05.2018</span> - Updated <a href="http://poolmining.us/#connect">Connect</a> page and added a total of 4 miners and switched to XMR-stak
-        </li>
-        <li><span class="date">04.05.2018</span> - Updated worker stats graph. Added link under Your Stats & Payment History
-        <li><span class="date">02.05.2018</span> - 
-        Worker added. Use walletID+workerID if you want fixed diff use: walletID+workerID.fixeddiff -> VqKbKuRE+PC.50000 to set worker name to PC and fixed diff to 50000.
-        </li>
-        <li><span class="date">01.05.2018</span> - 
-        Pool with PSTAR opened.
-        </li>
-        <li><span class="date">27.02.2018</span> - 
-        Added Top 10 page.
-        </li>
-        <li><span class="date">26.02.2018</span> - 
-        Switched site to dark mode
-        </li>
-        <li><span class="date">01.02.2018</span> - 
-        Updated block luck calculations. They were about 80% off on good luck.
-        </li>
-        <li><span class="date">01.02.2018</span> - 
-        Fixed charts not working.
-        </li>
-        <li><span class="date">31.01.2018</span> - 
-        Added pool load.
-        </li>           
-        <li><span class="date">30.01.2018</span> - 
-        Added Round Time to frontpage.
-        </li>        
-        <li><span class="date">29.01.2018</span> - 
-        Updated frontpage. Current block effort.
-        </li>                
-        <li><span class="date">28.01.2018</span> - 
-        Added round hashes to frontpage.
-        </li>                
-        <li><span class="date">27.01.2018</span> - 
-        Uploaded blockchain to support page.
-        </li>                
-        <li><span class="date">26.01.2018</span> - 
-        Added Mining Ports to a table to save some space.
-        </li>                
-        <li><span class="date">25.01.2018</span> - 
-        Nice hash port added.
-        </li>
+
         
 <!--
-<li><span class="date">.2018</span> - 
-        </li>
+        <div class="faq">
+            <h4></h4><p></p>
+        </div>  
 -->        
         
+
+        <div class="faq">
+            <h4>31.05.2018</h4><p>Poolmining.us officially changed to the official pool of the Cinkstarcoin. New address: pool.pinkstarcoin.com</p>
+        </div>  
         
-    </ul>
+        <div class="faq">
+            <h4>25.05.2018</h4><p>Added Settings page and possibility to change minumum payout.</p>
+        </div>  
+        
+        <div class="faq">
+            <h4>20.05.2018</h4><p>Added Workers and Top workers</p>
+        </div>  
+        
+    	<div class="faq">
+            <h4>13.05.2018</h4><p>Fixed the hashrate chart under Your Stats & Payment History</p>
+        </div>
+        
+        <div class="faq">
+            <h4>05.05.2018</h4><p>Updated <a href="http://poolmining.us/#connect">Connect</a> page and added a total of 4 miners and switched to XMR-stak</p>
+        </div>
+        
+        <div class="faq">
+            <h4>04.05.2018</h4><p>Updated worker stats graph. Added link under Your Stats & Payment History</p>
+        </div>
+        
+        <div class="faq">
+            <h4>02.05.2018</h4><p>Worker added. Use walletID+workerID if you want fixed diff use: walletID+workerID.fixeddiff -> VqKbKuRE+PC.50000 to set worker name to PC and fixed diff to 50000.</p>
+        </div>
+        
+        <div class="faq">
+            <h4>01.05.2018</h4><p>Pool with PSTAR opened.</p>
+        </div>
+        
+        <div class="faq">
+            <h4>27.02.2018</h4><p>Added Top 10 page.</p>
+        </div>
+       
+        <div class="faq">
+            <h4>26.02.2018</h4><p>Switched site to dark mode</p>
+        </div>
+        
+        <div class="faq">
+            <h4>01.02.2018</h4><p>Updated block luck calculations. They were about 80% off on good luck.</p>
+        </div>
+        
+        <div class="faq">
+            <h4>01.02.2018</h4><p>Fixed charts not working.</p>
+        </div>
+        
+        <div class="faq">
+            <h4>31.01.2018</h4><p>Added pool load.</p>
+        </div>           
+        
+        <div class="faq">
+            <h4>30.01.2018</h4><p>Added Round Time to frontpage.</p>
+        </div>        
+        
+        <div class="faq">
+            <h4>29.01.2018</h4><p>Updated frontpage. Current block effort.</p>
+        </div>                
+        
+        <div class="faq">
+            <h4>28.01.2018</h4><p>Added round hashes to frontpage.</p>
+        </div>                
+        
+        <div class="faq">
+            <h4>27.01.2018</h4><p>Uploaded blockchain to support page.</p>
+        </div>                
+        
+        <div class="faq">
+            <h4>26.01.2018</h4><p>Added Mining Ports to a table to save some space.</p>
+        </div>                
+        
+<!--
+        <div class="faq">
+            <h4></h4><p></p>
+        </div>  
+-->        
+        
     
     
 </div>        

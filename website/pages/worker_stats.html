@@ -40,12 +40,28 @@ function fetchAddressWorkers(address) {
             var layout = {
               title: 'Hashrate worker: ' + graphData[0].name,
               autosize: false,
-              width: 1000,
+              width: 1170,
               height: 500,
+              margin: {
+                l: 50,
+                r: 30,
+                b: 150,
+                t: 70,
+                pad: 4
+              },
               yaxis: {
                 autorange: false,
-                range: [0, rangeMax + 500],
-                type: 'linear'
+                range: [0, rangeMax + 200],
+                type: 'linear',
+                ticks: 'outside',
+                tickwidth: 2,
+                ticklen: 5
+
+              },
+              xaxis: {
+                ticks: 'inside',
+                tickwidth: 2,
+                ticklen: 5
               }
             }
             $template.appendTo("#graphs");
@@ -75,7 +91,8 @@ function getWorkerGraphData(worker, address, dataHandler) {
       var rangeMax = 0;
       for (var i = 0; i< data['charts']['hashrate'].length; i++) {
         xy = data['charts']['hashrate'][i];
-        graphData.names.push(new Date(xy[0]*1000).toUTCString());
+        graphData.names.push(new Date(xy[0]*1000).toLocaleString('de-DE', { timeZone: 'UTC' }));
+        ;
         if (xy[1] > rangeMax) {
           rangeMax = xy[1];
         }
@@ -89,7 +106,7 @@ function getWorkerGraphData(worker, address, dataHandler) {
         mode: 'lines',
         fill: 'tonexty',
         connectgaps: true,
-        autosize: false
+        autosize: false,
       }], rangeMax);
     }
   });
@@ -106,7 +123,6 @@ using the following format:</p>
 meaningful data depending on pool settings.</p>
 <br>
 <div class="input-group">
-  <!--<label class="col-sm-2 col-form-label col-form-label-lg" for="yourAddress">PSTAR address:</label>-->
   <input class="form-control" id="yourAddress" type="text" placeholder="Enter Your PSTAR Address">
   <span class="input-group-btn">
     <button class="btn btn-default" type="button" id="addressSetButton">

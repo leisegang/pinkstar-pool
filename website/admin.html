@@ -13,7 +13,8 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 
 <link href="custom.css" rel="stylesheet">
 <script src="custom.js"></script>
@@ -134,22 +135,20 @@
 		routePage();
 	};
 
-	function fetchLiveStats() {
-		$.ajax({
-			url: api + '/live_stats',
-			dataType: 'json',
-			cache: 'false'
-		}).done(function(data) {
-			//pulseLiveUpdate();
-			//lastStats = data;
-			//updateIndex();
-			if(currentPage.update) {
-				currentPage.update();
-			}
-		}).always(function() {
-			fetchLiveStats();
-		});
-	}
+    function fetchLiveStats() {
+        $.ajax({
+            url: api + '/live_stats',
+            dataType: 'json',
+            cache: 'false'
+        }).done(function(data){
+            pulseLiveUpdate();
+            lastStats = data;
+            updateIndex();
+            currentPage.update();
+        }).always(function () {
+            fetchLiveStats();
+        });
+    }
 
 	// init Handlebars template
 	function renderTemplate(usersData, templateId, view) {
@@ -172,12 +171,12 @@
 		}
 	}
 
-	function comparer(index) {
-		return function(a, b) {
-			var valA = getCellValue(a, index), valB = getCellValue(b, index);
-			return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
-		}
-	}
+    function comparer(index) {
+        return function(a, b) {
+            var valA = getCellValue(a, index), valB = getCellValue(b, index);
+            return $.isNumeric(valA) ? parseFloat(valA) - parseFloat(valB) : valA.localeCompare(valB)
+        }
+    }
 
 	function getCellValue(row, index) {
 		return $(row).children('td').eq(index).data("sort")
@@ -236,7 +235,7 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<div class="navbar-form navbar-right">
-					<a href="http://poolmining.us/?wallet=P6YwNCNZEGSdr1mKk2QGW9XB2MCkqFAejVGKAcTUGXJWTs82uEVtNp9E8Nipm9yFLkXpZuvegycNDj1KLx1CBJ5E1VqKbKuRE#" class="btn btn-primary"><i class="fa fa-sign-out"></i> To the pool</a>
+					<a href="http://pool.pinkstarcoin.com/?wallet=P6YwNCNZEGSdr1mKk2QGW9XB2MCkqFAejVGKAcTUGXJWTs82uEVtNp9E8Nipm9yFLkXpZuvegycNDj1KLx1CBJ5E1VqKbKuRE#" class="btn btn-primary admin"><i class="fa fa-sign-out"></i> To the pool</a>
 			</div> 
 		</div>
 	</div>
@@ -244,76 +243,21 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="list-group">
-				<a data-page="admin/statistics.html" href="#" class="list-group-item hot_link active"> <i class="fa fa-bar-chart-o"></i> Statistics </a> <a data-page="admin/monitoring.html" href="#monitoring" class="hot_link list-group-item"> <i class="fa fa-eye"></i> Monitoring </a> <a data-page="admin/userslist.html" href="#users_list" class=" hot_link list-group-item"> <i class="fa fa-users"></i> Users List </a>
+				<a data-page="admin/statistics.html" href="#" class="list-group-item hot_link active"> <i class="fas fa-chart-bar"></i> Statistics </a> 
+				<a data-page="admin/monitoring.html" href="#monitoring" class="hot_link list-group-item"> <i class="fa fa-eye"></i> Monitoring </a> 
+				<a data-page="admin/userslist.html" href="#users_list" class=" hot_link list-group-item"> <i class="fa fa-users"></i> Users List </a>
+				<a data-page="admin/ports.html" href="#ports" class=" hot_link list-group-item"> <i class="fa fa-link"></i> Ports Usage </a>
+
 			</div>
 		</div>
-		<div class="col-sm-9 layout">
+		<div class="col-sm-10 layout">
 			<p id="loading" class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p>
-
-
-<script type="text/javascript">
-baseUrl = "https://widgets.cryptocompare.com/";
-var scripts = document.getElementsByTagName("script");
-var embedder = scripts[ scripts.length - 1 ];
-(function (){
-var appName = encodeURIComponent(window.location.hostname);
-if(appName==""){appName="local";}
-var s = document.createElement("script");
-s.type = "text/javascript";
-s.async = true;
-var theUrl = baseUrl+'serve/v1/coin/chart?fsym=DCY&tsym=USD';
-s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
-embedder.parentNode.appendChild(s);
-})();
-</script>
-
-<script type="text/javascript">
-baseUrl = "https://widgets.cryptocompare.com/";
-var scripts = document.getElementsByTagName("script");
-var embedder = scripts[ scripts.length - 1 ];
-(function (){
-var appName = encodeURIComponent(window.location.hostname);
-if(appName==""){appName="local";}
-var s = document.createElement("script");
-s.type = "text/javascript";
-s.async = true;
-var theUrl = baseUrl+'serve/v1/coin/tiles?fsym=DCY&tsyms=USD,NOK,EUR,GBP';
-s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
-embedder.parentNode.appendChild(s);
-})();
-</script>
-
-
-<script type="text/javascript">
-baseUrl = "https://widgets.cryptocompare.com/";
-var scripts = document.getElementsByTagName("script");
-var embedder = scripts[ scripts.length - 1 ];
-var cccTheme = {"General":{"borderColor":"#1A9CBD","headerTextColor":"#1A9CBD","poweredByColor":"#1A9CBD","headerText":"DCY Converter"},"Form":{"labelColor":"#1A9CBD","inputColor":"#1A9CBD"}};
-(function (){
-var appName = encodeURIComponent(window.location.hostname);
-if(appName==""){appName="local";}
-var s = document.createElement("script");
-s.type = "text/javascript";
-s.async = true;
-var theUrl = baseUrl+'serve/v1/coin/converter?fsym=DCY&tsyms=NOK,USD';
-s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
-embedder.parentNode.appendChild(s);
-})();
-</script>
-
-
-
 
 			<div id="page"></div>
 		</div>
 	</div>
 </div>
-
-
-
-
-<script id="cid0020000175918908106" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 400px;height: 360px;">{"handle":"dinastycoin","arch":"js","styles":{"a":"1A9CBD","b":100,"c":"FFFFFF","d":"FFFFFF","k":"1A9CBD","l":"1A9CBD","m":"1A9CBD","n":"FFFFFF","p":"10","q":"1A9CBD","r":100,"pos":"bl","cv":1,"cvfnt":"'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"14px","cvfntw":"bold","cvbg":"1A9CBD","cvw":400,"cvh":30,"ticker":1,"fwtickm":1}}</script>
 </body>
 </html>
