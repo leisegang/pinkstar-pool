@@ -47,6 +47,8 @@
 		$('#registeredAddresses').text(data.totalWorkers);
 		$('#blocksUnlocked').text(data.blocksUnlocked);
     	$('#blocksOrphaned').text(data.blocksOrphaned);
+    	$('#totalShares').text(getReadableHashRateString(data.totalShares));
+   	
 	}
 
 	$(function() {
@@ -86,6 +88,11 @@
 		<h4><span class="fa fa-users"></span> Registered Addresses</h4>
 		<span class="statValue lead" id="registeredAddresses">...</span>
 	</div>
+	<div class="col-sm-3 color9">
+		<h4><span class="fa fa-users"></span> Total Hashes</h4>
+		<span class="statValue lead" id="totalShares">...</span>
+	</div>
+	
 </div>
 
 

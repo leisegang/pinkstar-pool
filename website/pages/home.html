@@ -98,6 +98,10 @@
         <div><i class="fa fa-clock-o"></i> Round Time: <span id="elapsedroundtime" target="_blank"></span></div>
         <div><i class="fa fa-users"></i> Round hashes: <span id="poolRoundHashes"></span></div>
 	    <div><i class="fa fa-star-half-o"></i>Current Block Effort: <span id="currentEffort"></span></div>
+	    
+	    
+	    <div><i class="fa fa-clock-o"></i>Payment Interval: <span id="paymentsInterval"></span></div>
+	    
         <div>
           <i class="fa fa-bar-chart-o"></i> Pool load: <span id="poolLoad"></span>
           <span data-toggle="tooltip" title="The average system load of the last 15 minutes. The closer this gets to 1, the more overloaded the pool is." class="fa fa-question-circle">
@@ -242,12 +246,12 @@
             <input type="number" class="form-control" id="calcHashRate" placeholder="Enter Your Hash Rate">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
-                    <span id="calcHashUnit" data-mul="0">H/s</span> <span class="caret"></span>
+                    <span id="calcHashUnit" data-mul="0">/s</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
-                    <li><a href="#" data-mul="0">H/s</a></li>
-                    <li><a href="#" data-mul="1">KH/s</a></li>
-                    <li><a href="#" data-mul="2">MH/s</a></li>
+                    <li><a href="#" data-mul="0">/s</a></li>
+                    <li><a href="#" data-mul="1">K/s</a></li>
+                    <li><a href="#" data-mul="2">M/s</a></li>
                 </ul>
             </div>
             <span class="input-group-addon">=</span>
@@ -273,7 +277,7 @@
         <div class="col-sm-4 stats">
             <div id="addressError"></div>
             <!-- <div class="yourStats"><i class="fa fa-key"></i> Address: <span id="yourAddressDisplay"></span></div> -->
-            <div class="yourStats"><i class="fa fa-dollar"></i> Minimum Payout: <span id="paymentsMinimum"></span> <a href="#settings" class="white">change</a></div>
+            <div class="yourStats"><i class="fa fa-dollar"></i> Minimum Payout: <span id="paymentsMinimum"></span><br>(<span id="paymentsMinimumDefault"></span> default) <a href="#settings" class="white">change</a></div>
             <div class="yourStats"><i class="fa fa-bank"></i> Pending Balance: <span id="yourPendingBalance"></span></div>
             <div class="yourStats"><i class="fa fa-money"></i> Total Paid: <span id="yourPaid"></span></div>
             <div class="yourStats"><i class="fa fa-clock-o"></i> Last Share Submitted: <span id="yourLastShare"></span></div>
@@ -347,7 +351,7 @@
             $('#networkLastBlockFound').timeago('update', new Date(lastStats.network.timestamp * 1000).toISOString());
 
             updateText('networkHashrate', getReadableHashRateString(lastStats.network.difficulty / lastStats.config.coinDifficultyTarget) + '/sec');
-            updateTitleText('networkHashrate', (lastStats.network.difficulty / lastStats.config.coinDifficultyTarget) + ' H/sec');
+            updateTitleText('networkHashrate', (lastStats.network.difficulty / lastStats.config.coinDifficultyTarget) + ' /sec');
             updateText('networkDifficulty', getReadableDifficultyString(lastStats.network.difficulty));
             updateTitleText('networkDifficulty', lastStats.network.difficulty);
             updateText('blockchainHeight', lastStats.network.height.toString());
@@ -357,7 +361,7 @@
             updateText('currentEffort', (lastStats.pool.roundHashes / lastStats.network.difficulty * 100).toFixed(1) + '%');
 
             updateText('poolHashrate', getReadableHashRateString(lastStats.pool.hashrate) + '/sec');
-            updateTitleText('poolHashrate', lastStats.pool.hashrate + ' H/sec');
+            updateTitleText('poolHashrate', lastStats.pool.hashrate + ' /sec');
 
             if (lastStats.pool.lastBlockFound){
                 var d = new Date(parseInt(lastStats.pool.lastBlockFound)).toISOString();
@@ -370,7 +374,7 @@
             updateTitleText('poolRoundHashes', lastStats.pool.roundHashes);
             updateText('poolMiners', lastStats.pool.miners.toString());
             updateText('poolWorkers', (lastStats.pool.workers || 0));
-
+            updateText('paymentsInterval', getReadableTime(lastStats.config.paymentsInterval));
 
             var totalFee = lastStats.config.fee;
             if (Object.keys(lastStats.config.donation).length) {
@@ -408,12 +412,11 @@
             else {
                 updateText('paymentsMinimum', getReadableCoins(lastStats.config.minPaymentThreshold));
             }
-
             updateText('blockSolvedTime', getReadableTime(lastStats.network.difficulty / lastStats.pool.hashrate));
             updateText('calcHashSymbol', lastStats.config.symbol);
             updateTotalCoins();
             updateText('blocksTotal', lastStats.pool.totalBlocks.toString());
-
+            updateText('paymentsMinimumDefault', getReadableCoins(lastStats.config.minPaymentThreshold));
             calcEstimateProfit();
 
             // Get the 15 minute average load.
@@ -489,7 +492,7 @@
     function render(data){
         for (var i=0; i<data.length; ++i) {
             var r = data[i];
-            var app = '<tr><td>'+(i+1)+'</td>'+'<td>'+r.miner+'</td>'+'<td title="' + r.hashrate + ' H/s">'+getReadableHashRateString(r.hashrate)+'/s</td></tr>';
+            var app = '<tr><td>'+(i+1)+'</td>'+'<td>'+r.miner+'</td>'+'<td title="' + r.hashrate + ' /s">'+getReadableHashRateString(r.hashrate)+'/s</td></tr>';
             $( "#top10_rows" ).append(app);
         }
     }
@@ -630,7 +633,7 @@
                         updateText('yourLastShare', 'Never');
 
                     updateText('yourHashrateHolder', getReadableHashRateString(data.stats.hashrate || 0) + '/sec');
-                    updateTitleText('yourHashrateHolder', (data.stats.hashrate || 0) + ' H/sec');
+                    updateTitleText('yourHashrateHolder', (data.stats.hashrate || 0) + ' /sec');
                     updateText('yourHashes', getReadableHashesString(data.stats.hashes));
                     updateTitleText('yourHashes', data.stats.hashes);
                     updateText('yourPaid', getReadableCoins(data.stats.paid));

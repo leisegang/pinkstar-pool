@@ -106,7 +106,7 @@
     function getReadableDifficultyString(difficulty){
         if (difficulty < 1000) return difficulty.toString();
         var i = 0;
-        var byteUnits = [' ', ' K', ' M', ' G', ' T', ' P' ];
+        var byteUnits = [' ', ' KH', ' MH', ' GH', ' TH', ' PH' ];
         while (difficulty > 1000){
             difficulty = difficulty / 1000;
             i++;
